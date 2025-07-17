@@ -31,32 +31,55 @@ export default function ButtonScreen() {
         contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={{
           width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
           padding: 16,
           gap: 16,
         }}
       >
-        <Button variant="glass">Glass button</Button>
-        <Button variant="glass">Glass button</Button>
-        <Button variant="glass">Glass button</Button>
-        <Button variant="glass">Glass button</Button>
-        <Button variant="glass">Glass button</Button>
-        <Button variant="glass">Glass button</Button>
-        <Button variant="glass">Glass button</Button>
-        <Button variant="glass">Glass button</Button>
+        <Button variant="glass" systemImage="camera">
+          Take a photo
+        </Button>
+        <Button variant="glass" systemImage="square.and.arrow.up">
+          Share with friends
+        </Button>
+        <Button variant="glass" systemImage="photo">
+          View gallery
+        </Button>
+        <Button variant="glass" systemImage="gearshape">
+          Edit settings
+        </Button>
+        <Button variant="glass" systemImage="person">
+          View profile
+        </Button>
+        <Button variant="glass" systemImage="info.circle">
+          About app
+        </Button>
+        <Button
+          variant="glassProminent"
+          color="orange"
+          systemImage="questionmark.circle"
+        >
+          Help & support
+        </Button>
+        <Button variant="glassProminent" role="destructive" systemImage="power">
+          Sign out
+        </Button>
         <View
           style={{ flexDirection: "row", gap: 16, justifyContent: "center" }}
         >
           <Button
             variant="glassProminent"
-            systemImage="chevron.left"
             onPress={() => setImageIdx(imageIdx - 1)}
+            style={{ width: 100 }}
           >
             Prev
           </Button>
           <Button
             variant="glassProminent"
-            systemImage="chevron.right"
             onPress={() => setImageIdx(imageIdx + 1)}
+            style={{ width: 100 }}
           >
             Next
           </Button>
