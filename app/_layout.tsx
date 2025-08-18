@@ -26,7 +26,11 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen
           name="index"
-          options={{ headerTransparent: true, headerTitle: "" }}
+          options={{
+            headerTransparent: true,
+            headerTitle: "Habit Tracker",
+            headerLargeTitle: true,
+          }}
         />
       </Stack>
       <StatusBar style="auto" />
