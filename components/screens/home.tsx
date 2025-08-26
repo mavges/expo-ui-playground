@@ -1,7 +1,13 @@
-import { Button } from "@expo/ui/swift-ui";
+import { Button as ButtonPrimitive, Host } from "@expo/ui/swift-ui";
 import { Image } from "expo-image";
 import * as React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import {
+  ScrollView,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from "react-native";
 
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
@@ -38,6 +44,8 @@ export default function ButtonScreen() {
           gap: 16,
         }}
       >
+        <Button variant="glass">Glass button</Button>
+        <Button variant="glassProminent">Glass Prominent</Button>
         <Button variant="glass" systemImage="camera">
           Take a photo
         </Button>
@@ -72,19 +80,30 @@ export default function ButtonScreen() {
           <Button
             variant="glassProminent"
             onPress={() => setImageIdx(imageIdx - 1)}
-            style={{ width: 100 }}
           >
             Prev
           </Button>
           <Button
             variant="glassProminent"
             onPress={() => setImageIdx(imageIdx + 1)}
-            style={{ width: 100 }}
           >
             Next
           </Button>
         </View>
       </ScrollView>
     </>
+  );
+}
+
+function Button(
+  props: React.ComponentProps<typeof ButtonPrimitive> & {
+    style?: StyleProp<ViewStyle>;
+  }
+) {
+  const { style, ...restProps } = props;
+  return (
+    <Host matchContents style={[style, { width: "100%" }]}>
+      <ButtonPrimitive {...restProps}>{props.children}</ButtonPrimitive>
+    </Host>
   );
 }

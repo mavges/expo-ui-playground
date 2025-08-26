@@ -1,1 +1,2 @@
-export { default } from "@/components/screens/habit-tracker";
+export { default } from "@/components/screens/home";
+// export { default } from "@/components/screens/liquid-glass-example";
