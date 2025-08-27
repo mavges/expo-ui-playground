@@ -149,7 +149,7 @@ const initialProfile: UserProfile = {
   name: "Beto",
   username: "@betomoedano",
   avatar: "person.fill",
-  theme: "blue",
+  theme: "#4A90E2",
   profileImageSize: "medium",
 };
 
@@ -311,6 +311,7 @@ function ProfileSection() {
         <VStack alignment="leading">
           <Text
             modifiers={[foregroundColor(profile.theme)]}
+            color={profile.theme}
             size={22}
             weight="bold"
           >
@@ -347,6 +348,22 @@ function ProfileSection() {
           onValueChanged={(color) => updateProfile({ theme: color })}
         />
       </DisclosureGroup>
+    </Section>
+  );
+}
+
+function ButtonsSection() {
+  return (
+    <Section title="🔘 Buttons">
+      <VStack spacing={12}>
+        <Button variant="default">Default</Button>
+        <Button variant="bordered">Bordered</Button>
+        <Button variant="plain">Plain</Button>
+        <Button variant="glass">Glass</Button>
+        <Button variant="glassProminent">Glass Prominent</Button>
+        <Button variant="borderedProminent">Bordered Prominent</Button>
+        <Button variant="borderless">Borderless</Button>
+      </VStack>
     </Section>
   );
 }
@@ -957,6 +974,7 @@ function AppContent() {
     <Host style={{ flex: 1 }}>
       <Form>
         <ProfileSection />
+        <ButtonsSection />
         <DashboardSection />
         <TaskManagementSection />
         <ContextMenuSection />
