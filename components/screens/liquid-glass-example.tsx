@@ -531,15 +531,6 @@ function DashboardSection() {
             >
               Randomize
             </Button>
-            <Button
-              onPress={() => {
-                setProductivityScore(1.0);
-                setFocusLevel(1.0);
-              }}
-              systemImage="bolt.fill"
-            >
-              Max Performance
-            </Button>
           </HStack>
         </VStack>
       </VStack>
@@ -955,51 +946,6 @@ function ContextMenuSection() {
             </VStack>
           </HStack>
         </VStack>
-
-        {/* Context Menu State Display */}
-        <VStack spacing={8}>
-          <Text size={14}>Current Menu States</Text>
-          <VStack spacing={4}>
-            {Object.entries(contextMenuStates).map(([key, value]) => (
-              <HStack key={key} spacing={8} alignment="center">
-                <Text size={12}>{`${key}:`}</Text>
-                <Text
-                  size={12}
-                  modifiers={[foregroundColor(value ? "green" : "gray")]}
-                >
-                  {value ? "ON" : "OFF"}
-                </Text>
-              </HStack>
-            ))}
-          </VStack>
-        </VStack>
-
-        {/* Quick Toggle Actions */}
-        <VStack spacing={8}>
-          <Text size={14}>Quick Toggles</Text>
-          <HStack spacing={12}>
-            <Button
-              onPress={() => {
-                Object.keys(contextMenuStates).forEach((key) => {
-                  updateContextMenuState(key, true);
-                });
-              }}
-              systemImage="checkmark.circle"
-            >
-              Enable All
-            </Button>
-            <Button
-              onPress={() => {
-                Object.keys(contextMenuStates).forEach((key) => {
-                  updateContextMenuState(key, false);
-                });
-              }}
-              systemImage="xmark.circle"
-            >
-              Disable All
-            </Button>
-          </HStack>
-        </VStack>
       </VStack>
     </Section>
   );
@@ -1028,7 +974,6 @@ export default function ModifiersScreen() {
     </AppProvider>
   );
 }
-
 // Styles for Chart component
 const chartStyles = StyleSheet.create({
   chartContainer: {
