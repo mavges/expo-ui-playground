@@ -5,11 +5,19 @@ import {
 } from "@expo/ui/build/swift-ui/modifiers";
 import {
   Button,
+  ColorPicker,
+  ContentUnavailableView,
+  DateTimePicker,
+  DateTimePickerProps,
+  DisclosureGroup,
   Form,
+  Gauge,
   Host,
   HStack,
   Image,
+  Picker,
   Section,
+  Slider,
   Switch,
   Text,
   VStack,
@@ -47,6 +55,32 @@ const Item = ({ item }: { item: (typeof initialItems)[number] }) => {
 export default function ModifiersScreen() {
   const [items, setItems] = useState(initialItems);
   const { width } = useWindowDimensions();
+
+  const [color, setColor] = useState<string>("blue");
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const options = ["$", "$$", "$$$", "$$$$"];
+  const [sliderValue, setSliderValue] = useState<number>(0.5);
+  const [switchValue, setSwitchValue] = useState<boolean>(true);
+
+  const profileImageSizes = ["Large", "Medium", "Small"];
+  const [disclosureGroupExpanded, setDisclosureGroupExpanded] =
+    useState<boolean>(false);
+  const [selectedProfileImageSizeIndex, setSelectedProfileImageSizeIndex] =
+    useState<number>(0);
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const displayOptions = ["compact", "graphical", "wheel"];
+  const [selectedIndexPicker, setSelectedIndexPicker] = useState(0);
+
+  const typeOptions = ["date", "hourAndMinute", "dateAndTime"];
+  const [typeIndex, setTypeIndex] = useState(0);
+
+  function getPickerType() {
+    const str = displayOptions[selectedIndexPicker];
+    return `${str.charAt(0).toUpperCase()}${str.slice(1)} picker`;
+  }
+
   return (
     <Host style={{ flex: 1 }}>
       <Form>
@@ -71,7 +105,8 @@ export default function ModifiersScreen() {
               // }),
             ]}
           >
-            <Image systemName="person.fill" size={50} />
+            <Image systemName="person.fill" size={50} color={color} />
+
             <Text modifiers={[foregroundColor("red")]}>Beto</Text>
             <Text modifiers={[foregroundColor("red")]}>@betomoedano</Text>
           </VStack>
@@ -80,6 +115,131 @@ export default function ModifiersScreen() {
           {items.map((item) => (
             <Item key={item.id} item={item} />
           ))}
+
+          <DateTimePicker
+            onDateSelected={(date) => {
+              setSelectedDate(date);
+            }}
+            displayedComponents={
+              typeOptions[
+                typeIndex
+              ] as DateTimePickerProps["displayedComponents"]
+            }
+            title="Select date"
+            initialDate={selectedDate.toISOString()}
+            variant={
+              displayOptions[
+                selectedIndexPicker
+              ] as DateTimePickerProps["variant"]
+            }
+          />
+
+          <Picker
+            options={displayOptions}
+            selectedIndex={selectedIndexPicker}
+            onOptionSelected={({ nativeEvent: { index } }) => {
+              setSelectedIndexPicker(index);
+            }}
+            variant="segmented"
+          />
+
+          <Picker
+            options={typeOptions}
+            selectedIndex={typeIndex}
+            onOptionSelected={({ nativeEvent: { index } }) => {
+              setTypeIndex(index);
+            }}
+            variant="segmented"
+          />
+
+          <VStack spacing={16}>
+            <HStack spacing={16}>
+              <Gauge
+                current={{ value: sliderValue }}
+                color={color}
+                type="circular"
+              />
+              <Gauge
+                current={{ value: sliderValue }}
+                color={color}
+                type="circularCapacity"
+              />
+              <Gauge
+                current={{ value: sliderValue }}
+                color={["red", "green", "blue"]}
+                type="circularCapacity"
+              />
+            </HStack>
+
+            <Gauge
+              current={{ value: sliderValue }}
+              color={color}
+              type="default"
+            />
+
+            <Gauge
+              current={{ value: sliderValue }}
+              color={color}
+              type="linear"
+            />
+
+            <Gauge
+              current={{ value: sliderValue }}
+              color={color}
+              type="linearCapacity"
+            />
+          </VStack>
+
+          <Slider value={sliderValue} onValueChange={setSliderValue} />
+
+          <Picker
+            label="Menu picker"
+            options={options}
+            selectedIndex={selectedIndex}
+            onOptionSelected={({ nativeEvent: { index } }) => {
+              setSelectedIndex(index);
+            }}
+            variant="menu"
+          />
+
+          <ColorPicker
+            label="Select a color"
+            selection={color}
+            supportsOpacity
+            onValueChanged={setColor}
+          />
+
+          <Switch
+            value={switchValue}
+            label="This is a switch"
+            onValueChange={setSwitchValue}
+          />
+
+          <DisclosureGroup
+            onStateChange={setDisclosureGroupExpanded}
+            isExpanded={disclosureGroupExpanded}
+            label="Show User Profile Details"
+          >
+            <Text>Name: John Doe</Text>
+            <Text>Email: john.doe@example.com</Text>
+            <Text>Role: Administrator</Text>
+          </DisclosureGroup>
+
+          <Picker
+            label="Profile image size"
+            options={profileImageSizes}
+            selectedIndex={selectedProfileImageSizeIndex}
+            onOptionSelected={({ nativeEvent: { index } }) => {
+              setSelectedProfileImageSizeIndex(index);
+            }}
+            variant="menu"
+          />
+
+          <ContentUnavailableView
+            title="No items"
+            systemImage="exclamationmark.triangle"
+            description="Add an item to get started"
+          />
 
           <HStack spacing={16}>
             <Text size={17} modifiers={[]}>
