@@ -10,7 +10,8 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.betoatexpo.expo-ui-playground"
+      "bundleIdentifier": "com.betoatexpo.expo-ui-playground",
+      "appleTeamId": "T2A8YY9YDW"
     },
     "android": {
       "adaptiveIcon": {
@@ -36,7 +37,8 @@
         }
       ],
       "expo-font",
-      "expo-web-browser"
+      "expo-web-browser",
+      "expo-video"
     ],
     "experiments": {
       "typedRoutes": true
