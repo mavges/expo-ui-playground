@@ -155,17 +155,29 @@ export default function ModifiersScreen() {
           <VStack spacing={16}>
             <HStack spacing={16}>
               <Gauge
-                current={{ value: sliderValue }}
+                current={{
+                  value: sliderValue,
+                  label: Math.round(sliderValue * 100).toString(),
+                }}
+                modifiers={[frame({ width: 100, height: 100 })]}
                 color={color}
                 type="circular"
               />
               <Gauge
-                current={{ value: sliderValue }}
+                current={{
+                  value: sliderValue,
+                  label: Math.round(sliderValue * 100).toString(),
+                }}
+                modifiers={[frame({ width: 100, height: 100 })]}
                 color={color}
                 type="circularCapacity"
               />
               <Gauge
-                current={{ value: sliderValue }}
+                current={{
+                  value: sliderValue,
+                  label: Math.round(sliderValue * 100).toString(),
+                }}
+                modifiers={[frame({ width: 100, height: 100 })]}
                 color={["red", "green", "blue"]}
                 type="circularCapacity"
               />

@@ -1,1 +1,1 @@
-export { default } from "@/components/screens/liquid-glass-example";
+export { default } from "@/components/screens/settings";
