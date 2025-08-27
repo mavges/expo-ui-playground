@@ -17,7 +17,6 @@ import {
   Gauge,
   Host,
   HStack,
-  Image,
   Picker,
   Section,
   Slider,
@@ -26,8 +25,9 @@ import {
   Text,
   VStack,
 } from "@expo/ui/swift-ui";
+import { Image as ExpoImage } from "expo-image";
 import React, { createContext, ReactNode, use, useState } from "react";
-import { StyleSheet, useWindowDimensions } from "react-native";
+import { StyleSheet } from "react-native";
 
 // Types
 interface Task {
@@ -280,33 +280,45 @@ function AppProvider({ children }: { children: ReactNode }) {
 // Component sections
 function ProfileSection() {
   const { profile, updateProfile } = use(AppContext) as AppState;
-  const { width } = useWindowDimensions();
   const [profileExpanded, setProfileExpanded] = useState(false);
 
   const profileSizes = ["small", "medium", "large"];
   const profileSizeIndex = profileSizes.indexOf(profile.profileImageSize);
 
+  const imageSize =
+    profile.profileImageSize === "large"
+      ? 80
+      : profile.profileImageSize === "medium"
+      ? 60
+      : 40;
+
   return (
     <Section title="👤 User Profile">
-      <VStack
-        spacing={16}
-        alignment="center"
-        modifiers={[frame({ width: width - 40 }), cornerRadius(12)]}
-      >
-        <Image
-          systemName={profile.avatar}
-          size={
-            profile.profileImageSize === "large"
-              ? 80
-              : profile.profileImageSize === "medium"
-              ? 60
-              : 40
-          }
-          color={profile.theme}
-        />
-        <Text modifiers={[foregroundColor(profile.theme)]}>{profile.name}</Text>
-        <Text modifiers={[foregroundColor("gray")]}>{profile.username}</Text>
-      </VStack>
+      <HStack spacing={16}>
+        <HStack
+          modifiers={[
+            frame({ width: imageSize, height: imageSize }),
+            cornerRadius(100),
+          ]}
+        >
+          <ExpoImage
+            source={{ uri: "https://github.com/betomoedano.png" }}
+            style={{ width: imageSize, height: imageSize }}
+            contentFit="fill"
+          />
+        </HStack>
+
+        <VStack alignment="leading">
+          <Text
+            modifiers={[foregroundColor(profile.theme)]}
+            size={22}
+            weight="bold"
+          >
+            {profile.name}
+          </Text>
+          <Text modifiers={[foregroundColor("gray")]}>{profile.username}</Text>
+        </VStack>
+      </HStack>
 
       <DisclosureGroup
         onStateChange={setProfileExpanded}
