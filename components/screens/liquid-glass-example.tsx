@@ -5,7 +5,6 @@ import {
 } from "@expo/ui/build/swift-ui/modifiers";
 import {
   Button,
-  Chart,
   ChartDataPoint,
   ChartType,
   ColorPicker,
@@ -19,10 +18,7 @@ import {
   Host,
   HStack,
   Image,
-  LineChartStyle,
   Picker,
-  PointChartStyle,
-  PointStyle,
   Section,
   Slider,
   Submenu,
@@ -31,7 +27,7 @@ import {
   VStack,
 } from "@expo/ui/swift-ui";
 import React, { createContext, ReactNode, use, useState } from "react";
-import { useWindowDimensions } from "react-native";
+import { StyleSheet, useWindowDimensions } from "react-native";
 
 // Types
 interface Task {
@@ -150,8 +146,8 @@ const initialTasks: Task[] = [
 ];
 
 const initialProfile: UserProfile = {
-  name: "Alex Johnson",
-  username: "@alexjohnson",
+  name: "Beto",
+  username: "@betomoedano",
   avatar: "person.fill",
   theme: "blue",
   profileImageSize: "medium",
@@ -732,163 +728,6 @@ function SettingsSection() {
   );
 }
 
-function ChartAnalyticsSection() {
-  const {
-    chartType,
-    setChartType,
-    chartData,
-    setChartData,
-    showGrid,
-    setShowGrid,
-    showLegend,
-    setShowLegend,
-  } = use(AppContext) as AppState;
-
-  const chartTypes: ChartType[] = ["line", "bar", "area", "pie", "point"];
-  const chartTypeOptions = ["Line", "Bar", "Area", "Pie", "Point"];
-  const chartTypeIndex = chartTypes.indexOf(chartType);
-
-  const dataSetOptions = [
-    "Productivity",
-    "Task Completion",
-    "Priority Distribution",
-  ];
-  const [selectedDataSet, setSelectedDataSet] = useState(0);
-
-  const getLineStyle = (): LineChartStyle => ({
-    width: 3,
-    pointStyle: "circle" as PointStyle,
-    pointSize: 6,
-    color: "#4A90E2",
-  });
-
-  const getPointStyle = (): PointChartStyle => ({
-    pointStyle: "circle" as PointStyle,
-    pointSize: 8,
-  });
-
-  React.useEffect(() => {
-    const getNewData = () => {
-      switch (selectedDataSet) {
-        case 0:
-          return productivityChartData;
-        case 1:
-          return taskCompletionData;
-        case 2:
-          return priorityDistribution;
-        default:
-          return productivityChartData;
-      }
-    };
-
-    const newData = getNewData();
-    setChartData(newData);
-  }, [selectedDataSet, setChartData]);
-
-  return (
-    <Section title="📈 Analytics & Charts">
-      <VStack spacing={16}>
-        <Text size={16}>Performance Analytics</Text>
-
-        {/* Chart Display */}
-        <VStack spacing={12}>
-          <Host style={{ height: 200 }}>
-            <Chart
-              data={chartData}
-              type={chartType}
-              showGrid={showGrid}
-              animate={true}
-              showLegend={showLegend}
-              lineStyle={chartType === "line" ? getLineStyle() : undefined}
-              pointStyle={chartType === "point" ? getPointStyle() : undefined}
-              areaStyle={
-                chartType === "area" ? { color: "#4A90E2" } : undefined
-              }
-              barStyle={
-                chartType === "bar" ? { cornerRadius: 6, width: 25 } : undefined
-              }
-              pieStyle={
-                chartType === "pie"
-                  ? { innerRadius: 0.3, angularInset: 2 }
-                  : undefined
-              }
-            />
-          </Host>
-        </VStack>
-
-        {/* Chart Controls */}
-        <VStack spacing={12}>
-          <Text size={14}>Chart Configuration</Text>
-
-          <VStack spacing={8}>
-            <Text size={12} modifiers={[foregroundColor("gray")]}>
-              Chart Type
-            </Text>
-            <Picker
-              options={chartTypeOptions}
-              selectedIndex={chartTypeIndex}
-              onOptionSelected={({ nativeEvent: { index } }) => {
-                setChartType(chartTypes[index]);
-              }}
-              variant="segmented"
-            />
-          </VStack>
-
-          <VStack spacing={8}>
-            <Text size={12} modifiers={[foregroundColor("gray")]}>
-              Data Set
-            </Text>
-            <Picker
-              options={dataSetOptions}
-              selectedIndex={selectedDataSet}
-              onOptionSelected={({ nativeEvent: { index } }) => {
-                setSelectedDataSet(index);
-              }}
-              variant="segmented"
-            />
-          </VStack>
-
-          <HStack spacing={16}>
-            <VStack spacing={4} alignment="leading">
-              <Text size={12} modifiers={[foregroundColor("gray")]}>
-                Grid
-              </Text>
-              <Switch value={showGrid} onValueChange={setShowGrid} />
-            </VStack>
-
-            <VStack spacing={4} alignment="leading">
-              <Text size={12} modifiers={[foregroundColor("gray")]}>
-                Legend
-              </Text>
-              <Switch value={showLegend} onValueChange={setShowLegend} />
-            </VStack>
-          </HStack>
-        </VStack>
-
-        {/* Chart Insights */}
-        <VStack spacing={8}>
-          <Text size={14}>Key Insights</Text>
-          <VStack spacing={4}>
-            <Text size={12} modifiers={[foregroundColor("gray")]}>
-              {`Current chart shows ${dataSetOptions[
-                selectedDataSet
-              ].toLowerCase()} data`}
-            </Text>
-            <Text size={12} modifiers={[foregroundColor("gray")]}>
-              {`Displaying as ${chartType} chart with ${chartData.length} data points`}
-            </Text>
-            <Text size={12} modifiers={[foregroundColor("gray")]}>
-              {`Grid: ${showGrid ? "ON" : "OFF"} • Legend: ${
-                showLegend ? "ON" : "OFF"
-              }`}
-            </Text>
-          </VStack>
-        </VStack>
-      </VStack>
-    </Section>
-  );
-}
-
 function ContextMenuSection() {
   const { contextMenuStates, updateContextMenuState, tasks, toggleTask } = use(
     AppContext
@@ -1162,7 +1001,6 @@ function AppContent() {
         <ProfileSection />
         <DashboardSection />
         <TaskManagementSection />
-        <ChartAnalyticsSection />
         <ContextMenuSection />
         <DateTimeSection />
         <SettingsSection />
@@ -1178,3 +1016,20 @@ export default function ModifiersScreen() {
     </AppProvider>
   );
 }
+
+// Styles for Chart component
+const chartStyles = StyleSheet.create({
+  chartContainer: {
+    height: 300,
+    // backgroundColor: "#f8f9fa",
+    // borderRadius: 12,
+    // padding: 16,
+    // marginBottom: 20,
+    // borderWidth: 1,
+    // borderColor: "#e1e5e9",
+  },
+  chart: {
+    flex: 1,
+    minHeight: 200, // Ensure minimum height
+  },
+});
