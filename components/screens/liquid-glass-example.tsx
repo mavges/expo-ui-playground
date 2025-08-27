@@ -1,78 +1,107 @@
-import { Host, Text } from "@expo/ui/swift-ui";
 import {
-  accessibilityLabel,
-  background,
-  blur,
-  border,
-  brightness,
   cornerRadius,
   foregroundColor,
-  offset,
-  onTapGesture,
-  padding,
-  rotationEffect,
-  saturation,
-  scaleEffect,
-  shadow,
-} from "@expo/ui/swift-ui/modifiers";
+  frame,
+} from "@expo/ui/build/swift-ui/modifiers";
+import {
+  Button,
+  Form,
+  Host,
+  HStack,
+  Image,
+  Section,
+  Switch,
+  Text,
+  VStack,
+} from "@expo/ui/swift-ui";
 import { useState } from "react";
-import { StyleSheet, useWindowDimensions } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useWindowDimensions } from "react-native";
+
+const initialItems = [
+  {
+    id: 1,
+    title: "Wash the dishes",
+    description: "Wash the dishes",
+    emoji: "🍽️",
+    status: "pending",
+    priority: 1,
+    dueDate: new Date(Date.now() + 1000 * 60 * 60 * 24),
+    createdAt: new Date(),
+  },
+  {
+    id: 2,
+    title: "Buy groceries",
+    description: "Buy groceries",
+    emoji: "🛒",
+    status: "pending",
+    priority: 2,
+    dueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2),
+    createdAt: new Date(),
+  },
+];
+
+const Item = ({ item }: { item: (typeof initialItems)[number] }) => {
+  return <Text>{`${item.emoji} ${item.title}`}</Text>;
+};
 
 export default function ModifiersScreen() {
-  const [playSounds, setPlaySounds] = useState(true);
-  const dimensions = useWindowDimensions();
-  const safeAreaInsets = useSafeAreaInsets();
-
+  const [items, setItems] = useState(initialItems);
+  const { width } = useWindowDimensions();
   return (
-    <Host matchContents>
-      <Text
-        size={22}
-        weight="heavy"
-        design="serif"
-        modifiers={[
-          background(
-            "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)"
-          ),
-          cornerRadius(25),
-          padding({ all: 25 }),
-          shadow({ radius: 20, x: 0, y: 10, color: "#667eea40" }),
-          blur(0.4),
-          brightness(0.15),
-          saturation(1.7),
-          scaleEffect(1.03),
-          rotationEffect(1),
-          offset({ x: 0, y: -2 }),
-          border({ color: "rgba(255, 255, 255, 0.3)", width: 1 }),
-          foregroundColor("#FFFFFF"),
-          accessibilityLabel(
-            "Ultimate masterpiece card with all visual effects"
-          ),
-          onTapGesture(() =>
-            alert("🎨 You've discovered the ultimate modifier masterpiece!")
-          ),
-        ]}
-      >
-        ULTIMATE MASTERPIECE
-      </Text>
+    <Host style={{ flex: 1 }}>
+      <Form>
+        <Section
+          title="Profile"
+          // modifiers={[clipShape("circle")]}
+        >
+          <VStack
+            spacing={16}
+            alignment="center"
+            modifiers={[
+              frame({ width }),
+              // background("#667eea"),
+              cornerRadius(12),
+              // shadow({ radius: 4, y: 2, color: "#ead", x: 2 }),
+              // scaleEffect(0.9),
+              // glassEffect({
+              //   glass: {
+              //     variant: "regular",
+              //     interactive: true,
+              //   },
+              // }),
+            ]}
+          >
+            <Image systemName="person.fill" size={50} />
+            <Text modifiers={[foregroundColor("red")]}>Beto</Text>
+            <Text modifiers={[foregroundColor("red")]}>@betomoedano</Text>
+          </VStack>
+        </Section>
+        <Section title="This is a section">
+          {items.map((item) => (
+            <Item key={item.id} item={item} />
+          ))}
+
+          <HStack spacing={16}>
+            <Text size={17} modifiers={[]}>
+              Some text!
+            </Text>
+            <Button onPress={() => alert("Clicked!")} systemImage="clipboard">
+              Copy
+            </Button>
+          </HStack>
+          <Switch
+            value={false}
+            label="This is a switch"
+            onValueChange={() => {}}
+          />
+        </Section>
+
+        <Section title="This is a section">
+          <Section title="This is a section">
+            <Text>This is a text</Text>
+          </Section>
+        </Section>
+      </Form>
     </Host>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F2F2F7",
-  },
-  uiView: {
-    backgroundColor: "#90EE90",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 16,
-  },
-  uiViewText: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-});
