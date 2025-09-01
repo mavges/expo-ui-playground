@@ -27,7 +27,6 @@ import {
 } from "@expo/ui/swift-ui";
 import { Image as ExpoImage } from "expo-image";
 import React, { createContext, ReactNode, use, useState } from "react";
-import { StyleSheet } from "react-native";
 
 // Types
 interface Task {
@@ -992,19 +991,3 @@ export default function ModifiersScreen() {
     </AppProvider>
   );
 }
-// Styles for Chart component
-const chartStyles = StyleSheet.create({
-  chartContainer: {
-    height: 300,
-    // backgroundColor: "#f8f9fa",
-    // borderRadius: 12,
-    // padding: 16,
-    // marginBottom: 20,
-    // borderWidth: 1,
-    // borderColor: "#e1e5e9",
-  },
-  chart: {
-    flex: 1,
-    minHeight: 200, // Ensure minimum height
-  },
-});
