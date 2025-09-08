@@ -1,6 +1,6 @@
 import {
   background,
-  border,
+  cornerRadius,
   fixedSize,
   frame,
   padding,
@@ -19,8 +19,13 @@ import { useState } from "react";
 import { ScrollView, Text } from "react-native";
 
 const fromSadToHappy = [
-  "😊",
+  "😭",
+  "😢",
+  "☹️",
+  "😕",
+  "😐",
   "🙂",
+  "😊",
   "😃",
   "😄",
   "😁",
@@ -28,20 +33,25 @@ const fromSadToHappy = [
   "😅",
   "😂",
   "🤣",
-  "😊",
+  "🥳",
 ];
 
 const fromSadToHappyStrings = [
+  "Devastated",
+  "Very sad",
   "Sad",
   "A bit sad",
   "Neutral",
-  "Somewhat happy",
+  "Slightly happy",
   "Happy",
+  "Cheerful",
   "Very happy",
+  "Joyful",
   "Excited",
-  "Overjoyed",
-  "Ecstatic",
-  "Blissful",
+  "Laughing",
+  "Hilarious",
+  "Rolling with laughter",
+  "Celebrating",
 ];
 
 export default function BasicUsage() {
@@ -68,8 +78,9 @@ export default function BasicUsage() {
         <VStack
           spacing={32}
           modifiers={[
-            border({ color: "#ff0000", width: 1 }),
+            // border({ color: "#ff0000", width: 1 }),
             background("#fff"),
+            cornerRadius(16),
           ]}
         >
           <HStack
@@ -77,29 +88,39 @@ export default function BasicUsage() {
             modifiers={[padding({ all: 16 }), frame({ height: 100 })]}
           >
             <VStack spacing={12}>
-              <ExpoUIText size={48}>{emoji}</ExpoUIText>
+              <ExpoUIText modifiers={[]} size={48}>
+                {emoji}
+              </ExpoUIText>
               {/* <ExpoUIText>{mood}</ExpoUIText> */}
             </VStack>
-            <Slider
-              steps={fromSadToHappyStrings.length}
-              max={fromSadToHappyStrings.length - 1}
-              value={fromSadToHappyStrings.indexOf(mood)}
-              onValueChange={(event: number) => {
-                const roundedValue = Math.round(event);
-                setEmoji(fromSadToHappy[roundedValue]);
-                setMood(fromSadToHappyStrings[roundedValue]);
-              }}
-            />
+
+            <VStack spacing={12}>
+              <ExpoUIText size={24}>{mood}</ExpoUIText>
+              <Slider
+                steps={fromSadToHappyStrings.length}
+                max={fromSadToHappyStrings.length - 1}
+                value={fromSadToHappyStrings.indexOf(mood)}
+                onValueChange={(event: number) => {
+                  const roundedValue = Math.round(event);
+                  setEmoji(fromSadToHappy[roundedValue]);
+                  setMood(fromSadToHappyStrings[roundedValue]);
+                }}
+              />
+            </VStack>
           </HStack>
 
           <LinearProgress
-            progress={0.5}
-            modifiers={[padding({ bottom: 16 })]}
-          />
-          <LinearProgress
-            color="orange"
-            progress={0.7}
-            modifiers={[padding({ bottom: 16 })]}
+            progress={
+              fromSadToHappyStrings.indexOf(mood) /
+              (fromSadToHappyStrings.length - 1)
+            }
+            color={
+              fromSadToHappyStrings.indexOf(mood) < 4
+                ? "red"
+                : fromSadToHappyStrings.indexOf(mood) < 8
+                ? "orange"
+                : "green"
+            }
           />
         </VStack>
       </Host>
