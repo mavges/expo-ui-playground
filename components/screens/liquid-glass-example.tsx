@@ -197,18 +197,18 @@ function AppProvider({ children }: { children: ReactNode }) {
   const [settings, setSettings] = useState<AppSettings>(initialSettings);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [taskFilter, setTaskFilter] = useState<"all" | "pending" | "completed">(
-    "all"
+    "all",
   );
   const [productivityScore, setProductivityScore] = useState(0.75);
   const [focusLevel, setFocusLevel] = useState(0.6);
   const [chartType, setChartType] = useState<ChartType>("line");
   const [chartData, setChartData] = useState<ChartDataPoint[]>(
-    productivityChartData
+    productivityChartData,
   );
   const [showGrid, setShowGrid] = useState(true);
   const [showLegend, setShowLegend] = useState(false);
   const [contextMenuStates, setContextMenuStates] = useState(
-    initialContextMenuStates
+    initialContextMenuStates,
   );
 
   const updateProfile = (updates: Partial<UserProfile>) => {
@@ -227,8 +227,8 @@ function AppProvider({ children }: { children: ReactNode }) {
   const toggleTask = (id: number) => {
     setTasks((prev) =>
       prev.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
+        task.id === id ? { ...task, completed: !task.completed } : task,
+      ),
     );
   };
 
@@ -288,8 +288,8 @@ function ProfileSection() {
     profile.profileImageSize === "large"
       ? 80
       : profile.profileImageSize === "medium"
-      ? 60
-      : 40;
+        ? 60
+        : 40;
 
   return (
     <Section title="👤 User Profile">
@@ -381,7 +381,7 @@ function DashboardSection() {
   const completionRate = totalTasks > 0 ? completedTasks / totalTasks : 0;
 
   const highPriorityTasks = tasks.filter(
-    (t) => t.priority === "high" && !t.completed
+    (t) => t.priority === "high" && !t.completed,
   ).length;
   const urgentTasksRate = totalTasks > 0 ? highPriorityTasks / totalTasks : 0;
 
@@ -556,7 +556,7 @@ function DashboardSection() {
 
 function TaskManagementSection() {
   const { tasks, toggleTask, taskFilter, setTaskFilter } = use(
-    AppContext
+    AppContext,
   ) as AppState;
 
   const filterOptions = ["all", "pending", "completed"];
@@ -590,7 +590,7 @@ function TaskManagementSection() {
         selectedIndex={filterIndex}
         onOptionSelected={({ nativeEvent: { index } }) => {
           setTaskFilter(
-            filterOptions[index] as "all" | "pending" | "completed"
+            filterOptions[index] as "all" | "pending" | "completed",
           );
         }}
         variant="segmented"
@@ -749,7 +749,7 @@ function SettingsSection() {
 
 function ContextMenuSection() {
   const { contextMenuStates, updateContextMenuState, tasks, toggleTask } = use(
-    AppContext
+    AppContext,
   ) as AppState;
 
   const menuOptions = [
@@ -861,7 +861,7 @@ function ContextMenuSection() {
 
   const renderMenuOption = (
     option: any,
-    index: number
+    index: number,
   ): React.ReactElement | null => {
     switch (option.type) {
       case "button":
@@ -906,7 +906,7 @@ function ContextMenuSection() {
             }
           >
             {option.items?.map((subItem: any, subIndex: number) =>
-              renderMenuOption(subItem, subIndex)
+              renderMenuOption(subItem, subIndex),
             )}
           </Submenu>
         );
@@ -932,7 +932,7 @@ function ContextMenuSection() {
               <ContextMenu>
                 <ContextMenu.Items>
                   {menuOptions.map((option, index) =>
-                    renderMenuOption(option, index)
+                    renderMenuOption(option, index),
                   )}
                 </ContextMenu.Items>
                 <ContextMenu.Trigger>
