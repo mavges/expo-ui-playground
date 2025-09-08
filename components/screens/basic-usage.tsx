@@ -81,6 +81,13 @@ export default function BasicUsage() {
             // border({ color: "#ff0000", width: 1 }),
             background("#fff"),
             cornerRadius(16),
+            // glassEffect({
+            //   glass: {
+            //     variant: "regular",
+            //     interactive: false,
+            //   },
+            //   shape: "rectangle",
+            // }),
           ]}
         >
           <HStack
@@ -111,7 +118,7 @@ export default function BasicUsage() {
 
           <LinearProgress
             progress={
-              fromSadToHappyStrings.indexOf(mood) /
+              (fromSadToHappyStrings.indexOf(mood) + 1) /
               (fromSadToHappyStrings.length - 1)
             }
             color={
