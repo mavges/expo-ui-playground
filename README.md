@@ -49,7 +49,8 @@ This playground demonstrates a complete **productivity app interface** built ent
 2. **Start the development server**
 
    ```bash
-   npx expo start
+   npm run dev
+   # or: npm start (for native development)
    ```
 
 3. **Open on your preferred platform**
