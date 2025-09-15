@@ -1,4 +1,4 @@
-import { Button as ButtonPrimitive, Host } from "@expo/ui/swift-ui";
+import { Button as ButtonPrimitive, Host } from "../swift-ui";
 import * as React from "react";
 import { ScrollView, StyleProp, View, ViewStyle } from "react-native";
 

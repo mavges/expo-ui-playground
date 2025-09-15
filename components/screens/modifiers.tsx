@@ -1,4 +1,4 @@
-import { Host, Text } from "@expo/ui/swift-ui";
+import { Host, Text } from "../swift-ui";
 import { glassEffect, padding } from "@expo/ui/swift-ui/modifiers";
 import { MeshGradientView } from "expo-mesh-gradient";
 import { View } from "react-native";

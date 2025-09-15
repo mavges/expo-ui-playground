@@ -13,14 +13,13 @@ import {
   Image as ExpoUIImage,
   Group,
   HStack,
-  Image,
+  VStack,
   Picker,
   Section,
   Spacer,
   Switch,
   Text,
-  VStack,
-} from "@expo/ui/swift-ui";
+} from "../swift-ui";
 import { Image as ExpoImage } from "expo-image";
 import { Link } from "expo-router";
 import React, { use, useState } from "react";
@@ -157,7 +156,7 @@ export function ProfileSection() {
           frame({ width: 100, height: 100 }),
         ]}
       >
-        <Image
+        <ExpoUIImage
           systemName="applelogo"
           // onPress={() => alert("This is an image")}
           size={50}
