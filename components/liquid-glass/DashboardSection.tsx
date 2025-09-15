@@ -1,4 +1,4 @@
-import { foregroundColor, frame } from "@expo/ui/build/swift-ui/modifiers";
+import { foregroundColor, frame } from "@expo/ui/swift-ui/modifiers";
 import {
   Button,
   Gauge,

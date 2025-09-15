@@ -5,7 +5,7 @@ import {
   foregroundColor,
   frame,
   glassEffect,
-} from "@expo/ui/build/swift-ui/modifiers";
+} from "@expo/ui/swift-ui/modifiers";
 import {
   Button,
   ColorPicker,

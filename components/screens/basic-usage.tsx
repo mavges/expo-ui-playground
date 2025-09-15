@@ -4,7 +4,7 @@ import {
   fixedSize,
   frame,
   padding,
-} from "@expo/ui/build/swift-ui/modifiers";
+} from "@expo/ui/swift-ui/modifiers";
 import {
   CircularProgress,
   Text as ExpoUIText,

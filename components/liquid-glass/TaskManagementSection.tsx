@@ -1,4 +1,4 @@
-import { foregroundColor } from "@expo/ui/build/swift-ui/modifiers";
+import { foregroundColor } from "@expo/ui/swift-ui/modifiers";
 import {
   ContentUnavailableView,
   HStack,
