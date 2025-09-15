@@ -1,13 +1,13 @@
 import {
   Chart,
-  ChartDataPoint,
-  ChartType,
+  type ChartDataPoint,
+  type ChartType,
+  type LineChartStyle,
+  type PointChartStyle,
+  type PointStyle,
   Host,
-  LineChartStyle,
   Picker,
-  PointChartStyle,
-  PointStyle,
-} from "@expo/ui/swift-ui";
+} from "../swift-ui";
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 

@@ -1,4 +1,4 @@
-import { DisclosureGroup, Picker, Section, Switch } from "@expo/ui/swift-ui";
+import { DisclosureGroup, Picker, Section, Switch } from "../swift-ui";
 import React, { use, useState } from "react";
 import { AppContext } from "./AppContext";
 import { AppState } from "./types";

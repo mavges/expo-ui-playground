@@ -2,14 +2,14 @@ import { foregroundColor } from "@expo/ui/swift-ui/modifiers";
 import {
   Button,
   ContextMenu,
+  Submenu,
   Host,
   HStack,
+  VStack,
   Section,
-  Submenu,
   Switch,
   Text,
-  VStack,
-} from "@expo/ui/swift-ui";
+} from "../swift-ui";
 import React, { use } from "react";
 import { AppContext } from "./AppContext";
 import { AppState } from "./types";

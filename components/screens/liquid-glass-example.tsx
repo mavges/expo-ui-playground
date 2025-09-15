@@ -1,4 +1,4 @@
-import { Form, Host } from "@expo/ui/swift-ui";
+import { Form, Host } from "../swift-ui";
 import React from "react";
 
 import { AppProvider } from "../liquid-glass/AppContext";

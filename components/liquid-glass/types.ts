@@ -1,4 +1,4 @@
-import { ChartDataPoint, ChartType } from "@expo/ui/swift-ui";
+import { ChartDataPoint, ChartType } from "../swift-ui";
 
 // Types
 export interface Task {
