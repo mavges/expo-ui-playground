@@ -49,13 +49,16 @@ This playground demonstrates a complete **productivity app interface** built ent
 2. **Start the development server**
 
    ```bash
-   npx expo start
+   npm run dev
+   # or: npm start (for native development)
    ```
 
 3. **Open on your preferred platform**
    - iOS Simulator (recommended for full Expo UI support)
    - Android Emulator
    - Physical device with Expo Go
+
+> The `@expo/ui` package bundles native-only views like `BottomSheet` that crash on web. A `patch-package` fix removes this export so the app runs in browsers.
 
 > **Note**: Some Expo UI components require iOS 16+ and work best on iOS simulators or physical iOS devices.
 
