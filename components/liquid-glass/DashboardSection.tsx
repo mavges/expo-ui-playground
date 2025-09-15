@@ -3,11 +3,11 @@ import {
   Button,
   Gauge,
   HStack,
+  VStack,
   Section,
   Slider,
   Text,
-  VStack,
-} from "@expo/ui/swift-ui";
+} from "../swift-ui";
 import React, { use } from "react";
 import { AppContext } from "./AppContext";
 import { AppState } from "./types";

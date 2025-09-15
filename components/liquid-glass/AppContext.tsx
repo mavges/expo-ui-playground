@@ -1,4 +1,4 @@
-import { ChartDataPoint, ChartType } from "@expo/ui/swift-ui";
+import { ChartDataPoint, ChartType } from "../swift-ui";
 import React, { createContext, ReactNode, useState } from "react";
 import { AppSettings, AppState, Task, UserProfile } from "./types";
 

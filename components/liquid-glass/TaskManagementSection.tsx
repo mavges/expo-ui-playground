@@ -2,12 +2,12 @@ import { foregroundColor } from "@expo/ui/swift-ui/modifiers";
 import {
   ContentUnavailableView,
   HStack,
+  VStack,
   Picker,
   Section,
   Switch,
   Text,
-  VStack,
-} from "@expo/ui/swift-ui";
+} from "../swift-ui";
 import React, { use } from "react";
 import { AppContext } from "./AppContext";
 import { AppState } from "./types";

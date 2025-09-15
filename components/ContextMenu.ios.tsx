@@ -1,11 +1,4 @@
-import {
-  Button,
-  ContextMenu,
-  Host,
-  Image,
-  Submenu,
-  Switch,
-} from "@expo/ui/swift-ui";
+import { Button, ContextMenu, Submenu, Host, Image, Switch } from "./swift-ui";
 import * as React from "react";
 import { View } from "react-native";
 

@@ -1,11 +1,11 @@
 import {
   Host,
   HStack,
+  VStack,
   LinearProgress,
   Slider,
   Text as UIText,
-  VStack,
-} from "@expo/ui/swift-ui";
+} from "./swift-ui";
 import { background, cornerRadius, padding } from "@expo/ui/swift-ui/modifiers";
 import { useState } from "react";
 const fromSadToHappy = [

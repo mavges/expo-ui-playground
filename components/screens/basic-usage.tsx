@@ -7,13 +7,13 @@ import {
 } from "@expo/ui/swift-ui/modifiers";
 import {
   CircularProgress,
+  LinearProgress,
   Text as ExpoUIText,
   Host,
   HStack,
-  LinearProgress,
   Slider,
   VStack,
-} from "@expo/ui/swift-ui";
+} from "../swift-ui";
 import { Link } from "expo-router";
 import { useState } from "react";
 import { ScrollView, Text } from "react-native";

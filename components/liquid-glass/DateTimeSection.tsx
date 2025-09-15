@@ -1,10 +1,10 @@
 import {
   DateTimePicker,
-  DateTimePickerProps,
+  type DateTimePickerProps,
   Picker,
   Section,
   Text,
-} from "@expo/ui/swift-ui";
+} from "../swift-ui";
 import React, { use, useState } from "react";
 import { AppContext } from "./AppContext";
 import { AppState } from "./types";
