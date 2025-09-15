@@ -1,0 +1,9 @@
+diff --git a/node_modules/@expo/ui/src/swift-ui/index.tsx b/node_modules/@expo/ui/src/swift-ui/index.tsx
+index 3e38298..fa7659d 100644
+--- a/node_modules/@expo/ui/src/swift-ui/index.tsx
++++ b/node_modules/@expo/ui/src/swift-ui/index.tsx
+@@ -1,4 +1,3 @@
+-export * from './BottomSheet';
+ export * from './Button';
+ export * from './Chart';
+ export * from './ColorPicker';

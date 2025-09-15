@@ -58,6 +58,8 @@ This playground demonstrates a complete **productivity app interface** built ent
    - Android Emulator
    - Physical device with Expo Go
 
+> The `@expo/ui` package bundles native-only views like `BottomSheet` that crash on web. A `patch-package` fix removes this export so the app runs in browsers.
+
 > **Note**: Some Expo UI components require iOS 16+ and work best on iOS simulators or physical iOS devices.
 
 ## 📂 Project Structure
