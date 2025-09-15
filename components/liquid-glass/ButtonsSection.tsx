@@ -1,4 +1,4 @@
-import { Button, Section, VStack } from "@expo/ui/swift-ui";
+import { Button, Section, VStack } from "../swift-ui";
 import React from "react";
 
 export function ButtonsSection() {
